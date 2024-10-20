@@ -1,0 +1,21 @@
+.game-details-page {
+    @apply w-full max-w-screen-2xl mx-auto p-4 md:p-10;
+
+    section.details-section {
+        @apply w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8 xl:gap-12;
+
+        .cover-image-container {
+            @apply w-full lg:max-w-md p-4 sm:p-0 aspect-auto border dark:border-light/20 border-dark/30 rounded-xl overflow-hidden shadow-xl;
+
+            img {
+                @apply w-full aspect-auto object-cover rounded-lg transition-transform duration-200 ease-in-out;
+            }
+
+            &:hover {
+                img {
+                    @apply scale-110;
+                }
+            }
+        }
+    }
+}

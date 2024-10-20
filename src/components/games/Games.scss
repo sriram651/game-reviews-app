@@ -56,28 +56,88 @@ section.games-listing-section {
             h4 {
                 @apply text-sm lg:text-base font-medium;
             }
+        }
+    }
+}
 
-            .genres-list {
-                @apply flex flex-wrap gap-2;
+// Game details
+.meta-details {
+    @apply w-full col-span-1 flex flex-col justify-end gap-3 md:gap-6;
 
-                li {
-                    @apply text-xs bg-brand-secondary/70 dark:bg-brand-secondary/50 px-2 py-1 rounded-md font-semibold tracking-wider;
+    h1 {
+        @apply text-2xl md:text-4xl xl:text-5xl font-semibold md:font-bold;
+    }
+
+    p.description {
+        @apply text-sm md:text-base w-full opacity-80 max-w-sm md:max-w-lg;
+    }
+
+    .genres-platforms {
+        @apply w-full flex flex-col justify-start items-start gap-3;
+
+        .genres-list {
+            @apply flex flex-wrap gap-1 md:gap-2;
+
+            li {
+                @apply text-xs bg-brand-secondary/70 dark:bg-brand-secondary/50 px-2 py-1 rounded md:rounded-md font-medium md:font-semibold tracking-wider;
+            }
+        }
+
+        .platforms-list {
+            @apply flex flex-wrap gap-1 md:gap-2;
+
+            li {
+                @apply text-xs bg-brand-primary/70 dark:bg-brand-primary/50 px-2 py-1 rounded md:rounded-md font-medium md:font-semibold tracking-wider;
+            }
+        }
+    }
+}
+
+// Game additonal details including rating, released date, etc.
+.additional-details {
+    @apply w-full flex flex-col justify-end items-start gap-3 mt-2 sm:mt-0;
+
+    .star-rating {
+        @apply w-max flex items-center gap-1;
+
+        h5 {
+            @apply text-6xl font-semibold bg-gradient-to-br from-brand-secondary to-brand-primary bg-clip-text text-transparent;
+        }
+    }
+
+    .detail-item {
+        @apply w-full flex flex-row justify-between items-center gap-3;
+
+        p {
+            @apply text-sm sm:text-base xl:text-lg font-medium opacity-60;
+        }
+
+        h6 {
+            @apply text-sm sm:text-base xl:text-lg font-semibold tracking-wide;
+        }
+    }
+
+    .action-btns {
+        @apply w-full flex flex-row justify-between items-center gap-2 xl:gap-3;
+
+        button {
+            @apply w-full px-4 py-2 border text-sm sm:text-base xl:text-lg font-medium rounded-lg shadow-md transition-all duration-300 ease-in-out;
+
+            &.rate-game {
+                @apply border-yellow-500 text-yellow-500;
+
+                &:hover,
+                &:focus-visible {
+                    @apply bg-yellow-500 text-background;
                 }
             }
 
-            .platforms-list {
-                @apply flex flex-wrap gap-2;
+            &.view-more {
+                @apply border-foreground text-foreground;
 
-                li {
-                    @apply text-xs bg-brand-primary/70 dark:bg-brand-primary/50 px-2 py-1 rounded-md font-semibold tracking-wider;
-                }
-            }
-
-            .game-card-footer {
-                @apply flex justify-between items-center;
-
-                button {
-                    @apply py-1 px-2 border border-light/60 rounded-md text-sm font-medium text-inherit bg-brand-primary focus:outline-none;
+                &:hover,
+                &:focus-visible {
+                    @apply bg-foreground text-background;
                 }
             }
         }

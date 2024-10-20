@@ -1,0 +1,24 @@
+.home-page {
+    @apply w-full;
+
+    section.welcome-section {
+        @apply w-full h-dvh flex flex-col items-center justify-center;
+
+        h1 {
+            @apply text-3xl md:text-4xl font-bold;
+        }
+
+        p {
+            @apply text-lg md:text-xl;
+        }
+
+        button {
+            @apply mt-4 w-max px-6 py-3 bg-gradient-to-br from-brand-secondary to-brand-primary text-white font-semibold rounded-lg shadow-md transition-all duration-300 ease-in-out;
+
+            &:hover,
+            &:focus-visible {
+                @apply opacity-80 bg-gradient-to-tl from-brand-secondary to-brand-primary outline-none;
+            }
+        }
+    }
+}

@@ -85,23 +85,3 @@ function Details({ details }) {
         </div>
     )
 }
-
-function Genres({ genres }) {
-    return (
-        <ul className="genres-list">
-            {genres.map((genre, index) => (
-                <li key={index}>{genre}</li>
-            ))}
-        </ul>
-    )
-}
-
-function Platforms({ platforms }) {
-    return (
-        <ul className="platforms-list">
-            {platforms.map((platform, index) => (
-                <li key={index}>{platform}</li>
-            ))}
-        </ul>
-    )
-}

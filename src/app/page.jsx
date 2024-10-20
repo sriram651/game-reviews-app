@@ -1,9 +1,9 @@
-import AllGames from "@/components/games/AllGames";
+import Welcome from "@/components/home/Welcome";
 
 export default function Home() {
     return (
-        <div className="w-full">
-            <AllGames />
+        <div className="home-page">
+            <Welcome />
         </div>
     );
 }

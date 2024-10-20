@@ -24,3 +24,21 @@ export const GET_ALL_GAMES = gql`
         }
     }
 `;
+
+export const GET_GAME_BY_ID = gql`
+    query GetGameById($gameId: ID!) {
+        getGameById(id: $gameId) {
+            _id
+            title
+            description
+            coverImage
+            createdAt
+            genre
+            platform
+            releasedYear
+            releaseDate
+            manufacturerName
+            developer
+        }
+    }
+`;
