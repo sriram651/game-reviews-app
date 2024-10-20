@@ -1,0 +1,85 @@
+section.games-listing-section {
+    @apply w-full p-4 md:p-10 flex flex-col gap-4 max-w-screen-2xl mx-auto;
+
+    h1 {
+        @apply text-2xl sm:text-3xl font-semibold sm:font-bold;
+    }
+
+    .games-listing {
+        @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4;
+
+        .skeleton-loader {
+            @apply relative w-full h-full min-h-96 max-h-96 lg:max-h-none flex flex-col gap-2 border border-dark/40 dark:border-dark/40 rounded-2xl shadow-md bg-white dark:bg-black text-white backdrop-blur-md overflow-clip text-foreground;
+
+            .skeleton-cover {
+                @apply relative w-full aspect-auto h-full bg-black/40 dark:bg-white/40 animate-pulse;
+            }
+
+            .skeleton-details {
+                @apply absolute w-full px-6 py-4 bg-black/25 backdrop-blur-lg bottom-0 left-0 right-0 text-white flex flex-col gap-2;
+
+                .skeleton-title {
+                    @apply w-3/4 h-4 bg-black/40 dark:bg-white/40 animate-pulse rounded-sm;
+                }
+
+                .skeleton-released {
+                    @apply w-1/2 h-4 bg-black/40 dark:bg-white/40 animate-pulse rounded-sm;
+                }
+            }
+        }
+
+        .game-card {
+            @apply relative w-full h-full max-h-96 lg:max-h-none flex flex-col gap-2 border-0 border-dark/40 dark:border-dark/40 rounded-2xl shadow-lg bg-white dark:bg-black text-white backdrop-blur-md overflow-clip text-foreground cursor-pointer;
+
+            .game-cover-container {
+                @apply relative w-full aspect-auto h-full overflow-clip;
+
+                img {
+                    @apply w-full aspect-auto h-full object-cover object-center transition-transform duration-300 ease-in-out;
+                }
+            }
+
+            &:hover {
+                img {
+                    @apply scale-110;
+                }
+            }
+
+            .game-details {
+                @apply absolute w-full px-6 py-4 bg-black/25 backdrop-blur-lg bottom-0 left-0 right-0 text-white;
+            }
+
+            h2 {
+                @apply text-lg lg:text-xl font-semibold w-full whitespace-pre overflow-hidden text-ellipsis;
+            }
+
+            h4 {
+                @apply text-sm lg:text-base font-medium;
+            }
+
+            .genres-list {
+                @apply flex flex-wrap gap-2;
+
+                li {
+                    @apply text-xs bg-brand-secondary/70 dark:bg-brand-secondary/50 px-2 py-1 rounded-md font-semibold tracking-wider;
+                }
+            }
+
+            .platforms-list {
+                @apply flex flex-wrap gap-2;
+
+                li {
+                    @apply text-xs bg-brand-primary/70 dark:bg-brand-primary/50 px-2 py-1 rounded-md font-semibold tracking-wider;
+                }
+            }
+
+            .game-card-footer {
+                @apply flex justify-between items-center;
+
+                button {
+                    @apply py-1 px-2 border border-light/60 rounded-md text-sm font-medium text-inherit bg-brand-primary focus:outline-none;
+                }
+            }
+        }
+    }
+}

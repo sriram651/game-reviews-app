@@ -1,0 +1,25 @@
+form.login-form {
+    @apply mt-4;
+
+    .form-group {
+        @apply mb-4;
+
+        label {
+            @apply block text-xs sm:text-sm font-medium text-inherit
+        }
+
+        input {
+            @apply mt-1 block w-full px-3 py-2 border border-light/60 bg-transparent rounded-md focus:outline-none sm:text-base focus-visible:border-brand-primary;
+        }
+
+
+    }
+
+    .login-btn-container {
+        @apply flex justify-between items-center;
+
+        button {
+            @apply w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-inherit bg-brand-primary focus:outline-none disabled:opacity-80 disabled:cursor-not-allowed;
+        }
+    }
+}
