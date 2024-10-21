@@ -1,5 +1,6 @@
 "use client";
 import GameDetails from "@/components/games/GameDetails";
+import ReviewsSection from "@/components/games/ReviewsSection";
 import { GET_GAME_BY_ID } from "@/graphql/queries";
 import { useQuery } from "@apollo/client";
 import Image from "next/image";
@@ -28,6 +29,8 @@ export default function GameDetailsPage() {
                     <GameDetails gameDetails={gameDetails} />
                 </section>
             )}
+
+            <ReviewsSection gameId={id} />
         </div>
     )
 }

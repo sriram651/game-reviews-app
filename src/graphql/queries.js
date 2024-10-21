@@ -42,3 +42,22 @@ export const GET_GAME_BY_ID = gql`
         }
     }
 `;
+
+export const GET_GAME_REVIEWS = gql`
+    query GetGameReviews($gameId: ID!) {
+        getGameById(id: $gameId) {
+            reviews {
+                _id
+                content
+                downVotes
+                upVotes
+                rating
+                score
+                createdAt
+                user {
+                    userName
+                }
+            }
+        }
+    }
+`;

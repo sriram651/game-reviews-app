@@ -8,3 +8,11 @@ export const LOGIN_USER = gql`
         }
     }
 `;
+
+export const ADD_REVIEW = gql`
+    mutation AddReview($gameId: ID!, $review: NewReviewInput!) {
+        addReview(gameId: $gameId, review: $review) {
+            _id
+        }
+    }
+`;
