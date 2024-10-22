@@ -16,3 +16,15 @@ export const ADD_REVIEW = gql`
         }
     }
 `;
+
+export const UPVOTE_REVIEW = gql`
+    mutation UpVoteReview($reviewId: ID!) {
+        upVoteReview(reviewId: $reviewId)
+    }
+`;
+
+export const DOWNVOTE_REVIEW = gql`
+    mutation DownVoteReview($reviewId: ID!) {
+        downVoteReview(reviewId: $reviewId)
+    }
+`;

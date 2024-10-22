@@ -1,8 +1,10 @@
 import { GET_GAME_REVIEWS } from "@/graphql/queries";
 import { formatFullDateTime } from "@/utils/helpers";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { useParams } from "next/navigation";
 import AddReview from "./AddReview";
+import { useState } from "react";
+import { UPVOTE_REVIEW } from "@/graphql/mutations";
 
 export default function ReviewsSection() {
 
@@ -50,6 +52,56 @@ function Review({ review }) {
             <p>Downvotes: {review.downVotes}</p>
             <p>Created by: {review.user.userName}</p>
             <p>Reviewed on: {formatFullDateTime(review.createdAt)}</p>
+
+            <Votes
+                reviewId={review?._id}
+                upVotes={review.upVotes}
+                downVotes={review.downVotes}
+            />
         </li>
+    )
+}
+
+function Votes({ reviewId, upVotes, downVotes }) {
+    const [upVoteCount, setUpVoteCount] = useState(upVotes);
+    const [downVoteCount, setDownVoteCount] = useState(downVotes);
+    const [upVote, { loading }] = useMutation(UPVOTE_REVIEW);
+
+    async function handleVote(voteType) {
+
+        try {
+            if (voteType === 'up') {
+                setUpVoteCount((prev) => prev + 1);
+
+                const { errors } = await upVote({
+                    variables: { reviewId }
+                });
+
+                if (errors) {
+                    setUpVoteCount((prev) => prev - 1);
+                }
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    return (
+        <div className="votes-section w-max max-w-full py-2 flex justify-start items-center gap-2">
+            <button
+                className="w-max px-3 py-2 border border-brand-secondary text-brand-secondary font-medium rounded-lg disabled:opacity-50"
+                onClick={() => handleVote('up')}
+                disabled={loading}
+            >
+                👍 {upVoteCount}
+            </button>
+            <button
+                className="w-max px-3 py-2 border border-red-600 text-red-600 font-medium rounded-lg disabled:opacity-50"
+                onClick={() => handleVote('down')}
+                disabled={loading}
+            >
+                👎 {downVoteCount}
+            </button>
+        </div>
     )
 }
