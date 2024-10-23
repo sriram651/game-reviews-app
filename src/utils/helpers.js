@@ -48,3 +48,39 @@ export function formatFullDateTime(timestamp, isUtc = false) {
 
     return `${day} ${month} ${year}, ${time} ${isUtc ? 'UTC' : ''}`;
 }
+
+/**
+ * Get a human-readable relative time string for a given timestamp.
+ *
+ * @param {number} timeStamp - The timestamp to compare against the current time. 
+ * This should be a time in milliseconds (e.g., from Date.now()).
+ * 
+ * @returns {string} A string representing the relative time (e.g., '2 days ago', 'in 3 hours', 'just now').
+ */
+export function getRelativeTime(timeStamp) {
+    const now = Date.now(); // Get the current time in milliseconds
+    const differenceInMs = timeStamp - now; // Calculate the difference in milliseconds
+
+    // Define time units in terms of milliseconds
+    const units = [
+        { unit: 'year', ms: 1000 * 60 * 60 * 24 * 365 },
+        { unit: 'month', ms: 1000 * 60 * 60 * 24 * 30 },
+        { unit: 'week', ms: 1000 * 60 * 60 * 24 * 7 },
+        { unit: 'day', ms: 1000 * 60 * 60 * 24 },
+        { unit: 'hour', ms: 1000 * 60 * 60 },
+        { unit: 'minute', ms: 1000 * 60 },
+        { unit: 'second', ms: 1000 },
+    ];
+
+    // Loop through each unit and find the appropriate one to use
+    for (const { unit, ms } of units) {
+        const amount = differenceInMs / ms;
+        if (Math.abs(amount) >= 1) {
+            // Use Intl.RelativeTimeFormat to generate the relative time string
+            const formatter = new Intl.RelativeTimeFormat('en', { numeric: 'auto' });
+            return formatter.format(Math.round(amount), unit);
+        }
+    }
+
+    return 'just now'; // If the time difference is too small, return 'just now'
+}
