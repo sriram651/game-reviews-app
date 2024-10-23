@@ -53,10 +53,30 @@ export const GET_GAME_REVIEWS = gql`
                 upVotes
                 rating
                 score
+                userVoteDetails {
+                    isVoted
+                    isDownVoted
+                    isUpVoted
+                }
                 createdAt
                 user {
                     userName
                 }
+            }
+        }
+    }
+`;
+
+export const GET_VOTE_DETAILS_BY_REVIEW = gql`
+    query GetVoteDetailsByReview($reviewId: ID!) {
+        reviewById(id: $reviewId) {
+            _id
+            downVotes
+            upVotes
+            userVoteDetails {
+                isDownVoted
+                isUpVoted
+                isVoted
             }
         }
     }
