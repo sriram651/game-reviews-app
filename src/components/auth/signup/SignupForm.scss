@@ -1,4 +1,4 @@
-form.login-form {
+form.signup-form {
     @apply mt-4;
 
     .form-group {
@@ -15,7 +15,7 @@ form.login-form {
 
     }
 
-    .login-btn-container {
+    .signup-btn-container {
         @apply flex justify-between items-center;
 
         button {
@@ -23,7 +23,7 @@ form.login-form {
         }
     }
 
-    .signup-link-container {
+    .login-link-container {
         @apply w-full text-left mt-4 text-sm md:text-base;
 
         a {

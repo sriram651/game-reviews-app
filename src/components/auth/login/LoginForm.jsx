@@ -2,6 +2,7 @@
 
 import { LOGIN_USER } from "@/graphql/mutations";
 import { useMutation } from "@apollo/client";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
@@ -77,6 +78,15 @@ export default function LoginForm() {
                 >
                     Login
                 </button>
+            </div>
+            <div className="signup-link-container">
+                Don&apos;t have an account?
+                <Link
+                    href={`/auth/signup`}
+                    referrerPolicy="no-referrer"
+                >
+                    {" "} Signup now.
+                </Link>
             </div>
         </form>
     )

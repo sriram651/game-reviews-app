@@ -1,4 +1,4 @@
-.login-page {
+.signup-page {
     @apply relative w-full min-h-screen p-4 md:p-10 flex justify-center items-center;
 
     .bg-cover-container {
@@ -9,7 +9,7 @@
         }
     }
 
-    .login-form-container {
+    .signup-form-container {
         @apply w-full max-w-md p-6 py-10 sm:p-10 border border-light/60 rounded-xl shadow-lg bg-black/10 text-white backdrop-blur-md;
 
         h1 {
