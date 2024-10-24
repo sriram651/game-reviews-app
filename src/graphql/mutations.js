@@ -13,6 +13,21 @@ export const ADD_REVIEW = gql`
     mutation AddReview($gameId: ID!, $review: NewReviewInput!) {
         addReview(gameId: $gameId, review: $review) {
             _id
+            content
+            downVotes
+            upVotes
+            rating
+            score
+            userVoteDetails {
+                isVoted
+                isDownVoted
+                isUpVoted
+            }
+            createdAt
+            user {
+                userName
+            }
+            __typename
         }
     }
 `;
