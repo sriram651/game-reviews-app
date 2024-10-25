@@ -1,12 +1,14 @@
 "use client";
 
 import { SIGNUP_USER } from "@/graphql/mutations";
+import useToast from "@/hooks/useToast";
 import { useMutation } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function SignupForm() {
     const { push } = useRouter();
+    const { showToast } = useToast();
     const [signupUser, { loading }] = useMutation(SIGNUP_USER)
 
     async function handleSignup(e) {
@@ -19,35 +21,45 @@ export default function SignupForm() {
         let isPasswordMatch = password === confirmPassword;
         let isPasswordValid = password.length >= 8;
         let isUserNameValid = userName.length >= 3;
-        let isFormValid = isPasswordMatch && isPasswordValid && isUserNameValid;
 
         try {
-            if (isFormValid) {
-                const { data, errors } = await signupUser({
-                    variables: {
-                        newUser: {
-                            email,
-                            userName,
-                            password,
-                            role: "USER"
-                        }
-                    }
-                });
-                console.log(errors);
+            if (!isUserNameValid) {
+                showToast("Username must be at least 3 characters long!", { type: "error" });
+                return;
+            }
 
-                if (data) {
-                    let { token } = data.registerNewUser;
+            if (!isPasswordMatch) {
+                showToast("Passwords do not match!", { type: "error" });
+                return;
+            }
 
-                    if (token) {
-                        localStorage.setItem('game-auth-token', token);
-                        push("/");
+            if (!isPasswordValid) {
+                showToast("Password must be at least 8 characters long!", { type: "error" });
+                return;
+            }
+
+            const { data } = await signupUser({
+                variables: {
+                    newUser: {
+                        email,
+                        userName,
+                        password,
+                        role: "USER"
                     }
                 }
-            } else {
-                console.log('Invalid form data');
+            });
+
+            if (data) {
+                let { token } = data.registerNewUser;
+
+                if (token) {
+                    showToast("Welcome aboard! We are excited to have you here🥳", { type: "success" });
+                    localStorage.setItem('game-auth-token', token);
+                    push("/");
+                }
             }
         } catch (error) {
-            console.error(error);
+            showToast(error.message, { type: "error" });
         }
     }
 

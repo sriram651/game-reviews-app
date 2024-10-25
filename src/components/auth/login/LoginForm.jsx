@@ -1,12 +1,14 @@
 "use client";
 
 import { LOGIN_USER } from "@/graphql/mutations";
+import useToast from "@/hooks/useToast";
 import { useMutation } from "@apollo/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
     const { push } = useRouter();
+    const { showToast } = useToast();
     const [loginUser, { loading }] = useMutation(LOGIN_USER)
 
     async function handleLogin(e) {
@@ -15,6 +17,21 @@ export default function LoginForm() {
         const password = e.target.password.value
 
         try {
+            if (!email) {
+                showToast("Email is required!", { type: "error" });
+                return;
+            }
+
+            if (!password) {
+                showToast("Password is required!", { type: "error" });
+                return;
+            }
+
+            if (password.length < 8) {
+                showToast("Password must be at least 8 characters long!", { type: "error" });
+                return;
+            }
+
             if (email && password) {
                 const { data, errors } = await loginUser({
                     variables: {
@@ -24,19 +41,19 @@ export default function LoginForm() {
                         }
                     }
                 });
-                console.log(errors);
 
                 if (data) {
                     let { token } = data.loginUser;
 
                     if (token) {
+                        showToast("Logged in successfully!", { type: "success" });
                         localStorage.setItem('game-auth-token', token);
                         push("/");
                     }
                 }
             }
         } catch (error) {
-            console.error(error);
+            showToast(error.message, { type: "error" });
         }
     }
 
