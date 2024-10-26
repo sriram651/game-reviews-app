@@ -2,6 +2,7 @@ import { ADD_REVIEW } from "@/graphql/mutations";
 import { GET_GAME_REVIEWS } from "@/graphql/queries";
 import { useMutation } from "@apollo/client";
 import { useParams } from "next/navigation";
+import { useRef } from "react";
 
 export default function AddReview() {
     const { id } = useParams();
@@ -36,24 +37,15 @@ export default function AddReview() {
             <h3>Add Review</h3>
 
             <form
-                className="review-form w-full max-w-lg"
+                className="review-form"
                 onSubmit={handleAddReview}
             >
-                <div className="my-2 flex flex-col justify-start items-start gap-1">
+                <div className="form-group">
                     <label htmlFor="content">Content</label>
-                    <textarea
-                        id="content"
-                        name="content"
-                        placeholder="Enter your review here..."
-                        cols={30}
-                        rows={5}
-                        required
-                        disabled={loading}
-                        className="w-full bg-transparent border border-dark dark:border-light rounded-lg p-2"
-                    />
+                    <AutoResizingTextarea loading={loading} />
                 </div>
 
-                <div className="my-2 flex flex-col justify-start items-start gap-1">
+                <div className="form-group">
                     <label htmlFor="rating">Rating</label>
                     <input
                         id="rating"
@@ -63,14 +55,13 @@ export default function AddReview() {
                         max="5"
                         required
                         disabled={loading}
-                        className="w-full bg-transparent border border-dark dark:border-light rounded-lg p-2"
                     />
                 </div>
 
                 <button
                     type="submit"
                     disabled={loading}
-                    className="submit-review-button mt-4 bg-brand-primary text-white rounded-lg px-4 py-2 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="submit-review-button"
                 >
                     {loading ? "Please wait..." : "Submit"}
                 </button>
@@ -78,3 +69,28 @@ export default function AddReview() {
         </div>
     )
 }
+
+function AutoResizingTextarea({ loading }) {
+    const textareaRef = useRef(null);
+
+    function handleInput() {
+        if (textareaRef.current) {
+            textareaRef.current.style.height = 'auto';
+            textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+        }
+    }
+
+    return (
+        <textarea
+            id="content"
+            name="content"
+            placeholder="Enter your review here..."
+            cols={30}
+            rows={1}
+            required
+            disabled={loading}
+            ref={textareaRef}
+            onInput={handleInput}
+        />
+    );
+};
