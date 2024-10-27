@@ -1,7 +1,6 @@
-import Image from "next/image"
-import GenreList from "./GenreList"
-import PlatformsList from "./PlatformsList"
-import { formatDate } from "@/utils/helpers"
+import GenreList from "./GenreList";
+import PlatformsList from "./PlatformsList";
+import { formatDate } from "@/utils/helpers";
 
 export default function GameDetails({ gameDetails }) {
     return (
@@ -53,15 +52,8 @@ function AdditionalDetails({ gameDetails }) {
 
 function StarRating() {
     return (
-        <div className="star-rating">
-            <h5>4.7 </h5>
-            <Image
-                src="/images/yellow-star.png"
-                alt="Star Rating"
-                width={200}
-                height={200}
-                className="w-14 aspect-square"
-            />
+        <div className="current-star-rating">
+            <h5>4.7 <span>★</span></h5>
         </div>
     )
 }
