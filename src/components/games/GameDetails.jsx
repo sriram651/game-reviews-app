@@ -20,12 +20,12 @@ export default function GameDetails({ gameDetails }) {
 }
 
 function AdditionalDetails({ gameDetails }) {
-    let { releaseDate, manufacturerName, developer } = gameDetails;
+    let { releaseDate, manufacturerName, developer, averageRating } = gameDetails;
     let formattedReleaseDate = formatDate(releaseDate);
 
     return (
         <div className="additional-details">
-            <StarRating />
+            <StarRating averageRating={averageRating} />
 
             <div className="release-date detail-item">
                 <p>Release Date</p>
@@ -43,17 +43,17 @@ function AdditionalDetails({ gameDetails }) {
             </div>
 
             <div className="action-btns">
-                <button className="rate-game">Rate Game</button>
+                {/* <button className="rate-game">Rate Game</button> */}
                 <button className="view-more">View more</button>
             </div>
         </div>
     )
 }
 
-function StarRating() {
+function StarRating({ averageRating }) {
     return (
         <div className="current-star-rating">
-            <h5>4.7 <span>★</span></h5>
+            <h5>{averageRating} <span>★</span></h5>
         </div>
     )
 }

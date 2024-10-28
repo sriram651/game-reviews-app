@@ -16,7 +16,6 @@ export default function AddReview() {
         event.preventDefault();
         const formData = new FormData(event.target);
         const content = formData.get("content");
-        const rating = rating;
 
         try {
             // Add review mutation
@@ -29,9 +28,12 @@ export default function AddReview() {
                     },
                 },
                 refetchQueries: [{ query: GET_GAME_REVIEWS, variables: { gameId: id } }],
+                awaitRefetchQueries: true,
+                // updateQueries: [{ query: GET_GAME_REVIEWS, variables: { gameId: id } }],
             });
 
             event.target.reset();
+            setRating(0);
         } catch (error) {
             console.log("Error adding review:", error);
         }

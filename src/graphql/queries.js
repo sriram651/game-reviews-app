@@ -37,6 +37,7 @@ export const GET_GAME_BY_ID = gql`
             platform
             releasedYear
             releaseDate
+            averageRating
             manufacturerName
             developer
         }
