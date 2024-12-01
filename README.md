@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Game Review App (Frontend)
 
-## Getting Started
+This repository contains the frontend for a game review application, built using **Next.js** and **Tailwind CSS**. It leverages **Apollo Client** for making API calls to interact with a backend service.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **User Authentication**: 
+  - Users can register and log in with a username and password.
+  - No email verification required for registration.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Game Listings**: 
+  - Displays a list of games with basic information.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Game Details**: 
+  - Users can view detailed information about each game, including:
+    - Description of the game.
+    - User reviews.
+    - Overall rating of the game.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **User Reviews**: 
+  - Users can leave reviews for games.
+  - Reviews can be upvoted or downvoted by other users.
 
-## Learn More
+- **Rating System**: 
+  - The overall rating of a game is calculated based on the star ratings given by users.
 
-To learn more about Next.js, take a look at the following resources:
+## Technologies Used
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Next.js** (React Framework)
+- **Tailwind CSS** (Utility-first CSS framework)
+- **Apollo Client** (GraphQL client for API calls)
+- **GraphQL** (For querying the backend)
+- **React** (Library for building UI components)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Setup
 
-## Deploy on Vercel
+### Prerequisites
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Before running the application, ensure you have the following installed:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Node.js** (v18 or above)
+- **npm** or **yarn** (package managers)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone [<repository-url>](https://github.com/sriram651/game-reviews-app.git)
+   ```
+2. Install Dependencies:
+   ```bash
+   cd game-reviews-app
+   npm install
+   ```
+3. Run the Development server:
+   ```bash
+   npm run dev
+   ```
